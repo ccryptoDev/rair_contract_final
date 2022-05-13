@@ -33,3 +33,4 @@ Thumbs.db
 # configuration files
 .env*
 bin__/
+Test_Only/
