@@ -26,8 +26,7 @@ describe('Token Factory with resale', function () {
   const nodeFeePercentage = 1000; // 1.000%
 
   const firstDeploymentAddress = '0xfa7a32340ea54A3FF70942B33090a8a9A1B50214';
-  const secondDeploymentAddress =
-    '0xED2AB923364a57cDB6d8f23A3180DfD2CF7E209B';
+  const secondDeploymentAddress = '0xED2AB923364a57cDB6d8f23A3180DfD2CF7E209B';
 
   // Contract addresses are derived from the user's address and the nonce of the transaction,
   //		the generated address will always be the same (on this test file)
@@ -35,8 +34,7 @@ describe('Token Factory with resale', function () {
   hre.tracer.nameTags[secondDeploymentAddress] = 'Second Deployment Address';
 
   before(async function () {
-    [owner, addr1, addr2, addr3, addr4, ...addrs] =
-    await ethers.getSigners();
+    [owner, addr1, addr2, addr3, addr4, ...addrs] = await ethers.getSigners();
     ERC777Factory = await ethers.getContractFactory('RAIR777');
     FactoryFactory = await ethers.getContractFactory('RAIR_Token_Factory');
     RAIR721Factory = await ethers.getContractFactory('RAIR_ERC721');
@@ -65,8 +63,7 @@ describe('Token Factory with resale', function () {
       expect(await erc777instance.granularity()).to.equal(1);
       expect(await erc777instance.totalSupply()).to.equal(initialSupply);
       hre.tracer.nameTags[erc777instance.address] = 'First 777 Address';
-      hre.tracer.nameTags[erc777ExtraInstance.address] =
-        'Second 777 Address';
+      hre.tracer.nameTags[erc777ExtraInstance.address] = 'Second 777 Address';
 
       /*
        *	Events:
@@ -81,6 +78,8 @@ describe('Token Factory with resale', function () {
         tokenPrice,
         erc777instance.address
       );
+      console.log('factory owner ----: ', await factoryInstance.OWNER());
+      console.log('owner address ----:', addr1.address);
       hre.tracer.nameTags[factoryInstance.address] = 'Factory';
     });
 
@@ -132,7 +131,7 @@ describe('Token Factory with resale', function () {
         expect(
           await factoryInstance.hasRole(
             await factoryInstance.OWNER(),
-            owner.address
+            addr1.address
           )
         ).to.equal(true);
         expect(
