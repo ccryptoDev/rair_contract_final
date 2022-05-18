@@ -79,7 +79,7 @@ describe('Token Factory with resale', function () {
         erc777instance.address
       );
       console.log('factory owner ----: ', await factoryInstance.OWNER());
-      console.log('owner address ----:', addr1.address);
+      console.log('owner address ----:', factoryInstance.address);
       hre.tracer.nameTags[factoryInstance.address] = 'Factory';
     });
 
@@ -131,7 +131,7 @@ describe('Token Factory with resale', function () {
         expect(
           await factoryInstance.hasRole(
             await factoryInstance.OWNER(),
-            addr1.address
+            owner.address
           )
         ).to.equal(true);
         expect(
